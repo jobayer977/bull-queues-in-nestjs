@@ -9,9 +9,10 @@ export class AppService {
   ) {}
 
   async getHello() {
-    return await this.sherlockQueue.add('sherlock', {
-      name: 'Sherlock Holmes',
-      address: '221B Baker Street',
+    return await this.sherlockQueue.add('generateReport', {
+      startDate: '2020-01-01',
+      endDate: '2020-01-31',
+      userId: '123',
     });
   }
 }

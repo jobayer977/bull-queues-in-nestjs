@@ -4,19 +4,18 @@ import { Job } from 'bull';
 
 @Processor('SHERLOCK_QUEUE')
 export class SherLockConsumer {
-  @Process('sherlock')
-  async doQuesU(job: Job<unknown>) {
-    console.log('Job is starting at ' + new Date().toISOString());
-    console.log(`Job id is ${job.id}`);
-    console.log(`Job data is ${JSON.stringify(job.data)}`);
+  @Process('generateReport')
+  async generateReport(job: Job<unknown>) {
+    console.log('Job is starting with ID ' + job.id);
+
     let progress = 0;
     for (let i = 0; i < 100; i++) {
       await doSomething();
       progress += 1;
       await job.progress(progress);
     }
-    console.log('Job is done at ' + new Date().toISOString());
-    return {};
+    console.log('Job is done with ID ' + job.id);
+    return { done: true };
   }
 }
 
