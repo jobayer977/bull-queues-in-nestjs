@@ -2,7 +2,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
-import { SherLockConsumer } from './sherlock-queue.consumer';
+import { ReportQueueConsumer } from './report-queue.consumer';
 
 @Module({
   imports: [
@@ -13,10 +13,10 @@ import { SherLockConsumer } from './sherlock-queue.consumer';
       },
     }),
     BullModule.registerQueue({
-      name: 'SHERLOCK_QUEUE',
+      name: `REPORT_QUEUE`,
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, SherLockConsumer],
+  providers: [AppService, ReportQueueConsumer],
 })
 export class AppModule {}
