@@ -2,6 +2,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
+import { ReportQueueConsumer } from './report-queue.consumer';
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { Module } from '@nestjs/common';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ReportQueueConsumer],
 })
 export class AppModule {}

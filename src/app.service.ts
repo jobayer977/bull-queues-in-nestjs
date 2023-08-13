@@ -11,10 +11,12 @@ export class AppService {
   }
 
   async genReport(type: string) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('Hello World!');
-      }, 30000);
-    });
+    return this.queue.add(
+      'GEN_REPORT',
+      { type },
+      {
+        priority: 1,
+      },
+    );
   }
 }
