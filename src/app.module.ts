@@ -13,7 +13,7 @@ import { ReportQueueConsumer } from './report-queue.consumer';
       },
     }),
     BullModule.registerQueue({
-      name: `REPORT_QUEUE`,
+      name: 'REPORT_QUEUE',
     }),
   ],
   controllers: [AppController],

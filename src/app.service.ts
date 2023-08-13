@@ -4,20 +4,19 @@ import { Queue } from 'bull';
 
 @Injectable()
 export class AppService {
-  constructor(
-    @InjectQueue('REPORT_QUEUE') private readonly sherlockQueue: Queue,
-  ) {}
+  constructor(@InjectQueue('REPORT_QUEUE') private queue: Queue) {}
 
-  async getHello() {
+  getHello(): string {
     return 'Hello World!';
   }
 
-  async getReport(type: string) {
-    await this.sherlockQueue.add('GENERATE_REPORT', {
-      type,
-    });
-    return {
-      message: `Report of type ${type} is being generated`,
-    };
+  async genReport(type: string) {
+    return this.queue.add(
+      'GEN_REPORT',
+      { type },
+      {
+        priority: 1,
+      },
+    );
   }
 }
